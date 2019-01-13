@@ -11,27 +11,22 @@
           <p v-if="checkoutStatus">{{checkoutStatus}}</p>
         </div>
     </template>
-    
     <script>
-    
-    import {mapState, mapGetters, mapActions} from 'vuex'
-    export default {
+      import {mapState, mapGetters, mapActions} from 'vuex'
+      export default {
         computed: {
-            ...mapGetters({
-                products: 'cartProducts',
-                total: 'cartTotal'
-            }),
-            ...mapState({
-                checkoutStatus: state => state.cart.checkoutStatus
-            })
+          ...mapGetters('cart', {
+            products: 'cartProducts',
+            total: 'cartTotal'
+          }),
+          ...mapState('cart', {
+            checkoutStatus: state => state.checkoutStatus
+          })
         },
-
         methods: {
-            ...mapActions(['checkout'])
+          ...mapActions('cart', ['checkout'])
         }
-      }           
-   
+      }
     </script>
-    
     <style scoped>
     </style>
