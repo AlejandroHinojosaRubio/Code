@@ -1,4 +1,4 @@
-# Plan A 2019
+# Plan A 2019 #
 1. Vuex --> Vueschool.com [tutorial]
 2. Nuxt.js --> Vueschool.com [tutorial]
 3. https://www.toptal.com/vue-js/server-side-rendered-vue-js-using-nuxt-js
