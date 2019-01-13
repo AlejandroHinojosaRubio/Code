@@ -19,10 +19,10 @@
         computed: {
             ...mapGetters({
                 products: 'cartProducts',
-                total: 'carTotal'
+                total: 'cartTotal'
             }),
             ...mapState({
-                checkoutStatus: 'checkoutStatus'
+                checkoutStatus: state => state.cart.checkoutStatus
             })
         },
 
