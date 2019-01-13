@@ -1,4 +1,4 @@
-# vuex-buscador
+# Prueba
 
 ## Project setup
 ```
