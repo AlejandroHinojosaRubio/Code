@@ -1,23 +1,30 @@
-const SHA256 = require('crypto-js/sha256')
+const SHA256 = require('crypto-js/sha256');
 
 class Block {
-    constructor(index, data, previusHash = ''){
+    constructor(index, data, previousHash = ''){
         this.index = index;
         this.date = new Date();
         this.data = data;
-        this.previusHash = previusHash;
+        this.previousHash = previousHash;
         this.hash = this.createHash();
         this.nonce = 0;
     }
 
     createHash() {
-        return SHA256(this.index + this.date + this.data + this.previusHash + this.nonce).toString();
-    } 
+        return SHA256(this.index + this.date + this.data + this.previousHash + this.nonce).toString();
+    }
+
+    mine(difficulty) {
+        while(!this.hash.startsWith(difficulty)) {
+            this.nonce++;
+            this.hash = this.createHash();
+        }
+    }
 }
 
 class BlockChain {
     constructor(genesis, difficulty = '00'){
-        this.chain = [this.createFirstBlock(genesis)];
+        this.chain = [this.createFirstBlock(genesis)]; 
         this.difficulty = difficulty;
     }
     createFirstBlock(genesis){
@@ -29,13 +36,28 @@ class BlockChain {
     addBlock(data){
         let prevBlock = this.getLastBlock();
         let block = new Block(prevBlock.index+1, data, prevBlock.hash);
+        block.mine(this.difficulty);
+        console.log('Minado! '+block.hash+' con nonce '+block.nonce);
         this.chain.push(block);
+    }
+    isValid() {
+        for(let i=1; i < this.chain.length; i++){
+            let prevBlock = this.chain[i-1];
+            let currBlock = this.chain[i];
+
+            if(currBlock.previousHash != prevBlock.hash)
+                return false;
+            
+            if(currBlock.createHash() != currBlock.hash)
+                return false;
+        }
+        return true;
     }
 }
 
+let matiCoin = new BlockChain('info de genesis','00');
 
-let mycoin = new BlockChain('Info de genesis');
-mycoin.addBlock('me voy a forrar');
-mycoin.addBlock('un yate para matias');
+matiCoin.addBlock('info del block 2');
+matiCoin.addBlock('mas datos para el block 3');
 
-console.log(JSON.stringify(mycoin.chain,null,2));
+console.log(JSON.stringify(matiCoin.chain,null,2));
