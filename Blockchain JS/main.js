@@ -7,16 +7,18 @@ class Block {
         this.data = data;
         this.previusHash = previusHash;
         this.hash = this.createHash();
+        this.nonce = 0;
     }
 
     createHash() {
-        return SHA256(this.index + this.date + this.data).toString();
+        return SHA256(this.index + this.date + this.data + this.previusHash + this.nonce).toString();
     } 
 }
 
 class BlockChain {
-    constructor(genesis){
+    constructor(genesis, difficulty = '00'){
         this.chain = [this.createFirstBlock(genesis)];
+        this.difficulty = difficulty;
     }
     createFirstBlock(genesis){
         return new Block(0,genesis);
