@@ -60,4 +60,5 @@ let matiCoin = new BlockChain('info de genesis','00');
 matiCoin.addBlock('info del block 2');
 matiCoin.addBlock('mas datos para el block 3');
 
+console.log(matiCoin.isValid());
 console.log(JSON.stringify(matiCoin.chain,null,2));
