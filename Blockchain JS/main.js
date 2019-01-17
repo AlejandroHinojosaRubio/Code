@@ -23,7 +23,7 @@ class Block {
 }
 
 class BlockChain {
-    constructor(genesis, difficulty = '00'){
+    constructor(genesis, difficulty = '00000'){
         this.chain = [this.createFirstBlock(genesis)]; 
         this.difficulty = difficulty;
     }
@@ -49,14 +49,20 @@ class BlockChain {
                 return false;
             
             if(currBlock.createHash() != currBlock.hash)
-                return false;
+                return false;   
         }
         return true;
     }
 }
 
-let matiCoin = new BlockChain('Hola mundo!','00');
+let coleCoin = new BlockChain('Hola mundo!');
 
-matiCoin.addBlock('Me voy a forrar');
-matiCoin.addBlock('yate para matias');
-console.log(JSON.stringify(matiCoin.chain,null,2));
+coleCoin.addBlock('Me voy a forrar');
+coleCoin.addBlock('yate para todos');
+coleCoin.addBlock('Futbol')
+coleCoin.addBlock('A pepe le gusta la macedonia');
+coleCoin.addBlock('Nave espacial');
+coleCoin.addBlock('BlockChain legal')
+
+console.log(coleCoin.isValid())
+console.log(JSON.stringify(coleCoin.chain,null,2));
