@@ -23,7 +23,7 @@ class Block {
 }
 
 class BlockChain {
-    constructor(genesis, difficulty = '00000'){
+    constructor(genesis, difficulty = '00'){
         this.chain = [this.createFirstBlock(genesis)]; 
         this.difficulty = difficulty;
     }
