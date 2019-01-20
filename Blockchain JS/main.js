@@ -50,6 +50,7 @@ class BlockChain {
             
             if(currBlock.createHash() != currBlock.hash)
                 return false;
+                return false;   
         }
         return true;
     }
@@ -62,3 +63,14 @@ matiCoin.addBlock('mas datos para el block 3');
 
 console.log(matiCoin.isValid());
 console.log(JSON.stringify(matiCoin.chain,null,2));
+let coleCoin = new BlockChain('Hola mundo!');
+
+coleCoin.addBlock('Me voy a forrar');
+coleCoin.addBlock('yate para todos');
+coleCoin.addBlock('Futbol')
+coleCoin.addBlock('A pepe le gusta la macedonia');
+coleCoin.addBlock('Nave espacial');
+coleCoin.addBlock('BlockChain legal')
+
+console.log(coleCoin.isValid())
+console.log(JSON.stringify(coleCoin.chain,null,2));
