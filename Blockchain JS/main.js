@@ -49,12 +49,20 @@ class BlockChain {
                 return false;
             
             if(currBlock.createHash() != currBlock.hash)
+                return false;
                 return false;   
         }
         return true;
     }
 }
 
+let matiCoin = new BlockChain('info de genesis','00');
+
+matiCoin.addBlock('info del block 2');
+matiCoin.addBlock('mas datos para el block 3');
+
+console.log(matiCoin.isValid());
+console.log(JSON.stringify(matiCoin.chain,null,2));
 let coleCoin = new BlockChain('Hola mundo!');
 
 coleCoin.addBlock('Me voy a forrar');
